@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y git
 # RUN apt-get update && apt-get install -y python3-colcon-common-extensions 
 RUN apt-get update && apt-get install -y python3-pip 
 # RUN apt-get update && apt-get install -y python-rosdep
-RUN apt-get update && apt-get install -y python3-vcstool 
+# RUN apt-get update && apt-get install -y python3-vcstool 
 RUN apt-get update && apt-get install -y wget \
   && locale-gen en_US.UTF-8 \
   && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
