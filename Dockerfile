@@ -68,17 +68,17 @@ RUN sudo apt install --no-install-recommends -y \
 RUN sudo apt install --no-install-recommends -y \
   libcunit1-dev
 
-RUN mkdir -p /opt/ros/eloquent/src
-RUN cd ~/ros2_eloquent
-RUN wget https://raw.githubusercontent.com/ros2/ros2/eloquent/ros2.repos
+RUN mkdir -p /opt/ros/galactic/src
+RUN cd /opt/ros/galactic
+RUN wget https://raw.githubusercontent.com/ros2/ros2/galactic/ros2.repos
 RUN vcs import src < ros2.repos
 RUN sudo rosdep init
 RUN rosdep update
-RUN rosdep install --from-paths src --ignore-src --rosdistro eloquent -y --skip-keys "console_bridge fastcdr fastrtps libopensplice67 libopensplice69 rti-connext-dds-5.3.1 urdfdom_headers"
+RUN rosdep install --from-paths src --ignore-src --rosdistro galactic -y --skip-keys "console_bridge fastcdr fastrtps libopensplice67 libopensplice69 rti-connext-dds-5.3.1 urdfdom_headers"
 RUN sudo rosdep init
 RUN rosdep update
-RUN rosdep install --from-paths src --ignore-src --rosdistro eloquent -y --skip-keys "console_bridge fastcdr fastrtps libopensplice67 libopensplice69 rti-connext-dds-5.3.1 urdfdom_headers"
-RUN cd ~/opt/ros/eloquent/
+RUN rosdep install --from-paths src --ignore-src --rosdistro galactic -y --skip-keys "console_bridge fastcdr fastrtps libopensplice67 libopensplice69 rti-connext-dds-5.3.1 urdfdom_headers"
+RUN cd /opt/ros/galactic/
 RUN colcon build --symlink-install
 
 ENV ROS_DISTRO=galactic
