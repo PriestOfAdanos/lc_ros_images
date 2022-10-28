@@ -19,6 +19,14 @@ RUN apt-get update && apt-get install -y \
   curl \
   gnupg2 \
   lsb-release \
+  build-essential \
+  cmake \
+  git \
+  python3-colcon-common-extensions \
+  python3-pip \
+  python-rosdep \
+  python3-vcstool \
+  wget \
   && locale-gen en_US.UTF-8 \
   && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
   && rm -rf /var/lib/apt/lists/*
@@ -35,15 +43,7 @@ RUN ln -fs /usr/share/zoneinfo/UTC /etc/localtime \
 # Install ROS2
 RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc |  apt-key add -
 RUN  sh -c 'echo "deb [arch=$(dpkg --print-architecture)] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list'
-RUN  apt update &&  apt install -y \
-  build-essential \
-  cmake \
-  git \
-  python3-colcon-common-extensions \
-  python3-pip \
-  python-rosdep \
-  python3-vcstool \
-  wget
+  
 # install some pip packages needed for testing
 RUN python3 -m pip install -U \
   argcomplete \
