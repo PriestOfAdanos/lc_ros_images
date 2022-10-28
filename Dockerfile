@@ -30,10 +30,10 @@ RUN ln -fs /usr/share/zoneinfo/UTC /etc/localtime \
   && rm -rf /var/lib/apt/lists/*
 
 # Install ROS2
-RUN sudo apt update && sudo apt install curl gnupg2 lsb-release
-RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-RUN sudo sh -c 'echo "deb [arch=$(dpkg --print-architecture)] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list'
-RUN sudo apt update && sudo apt install -y \
+RUN  apt update &&  apt install curl gnupg2 lsb-release
+RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc |  apt-key add -
+RUN  sh -c 'echo "deb [arch=$(dpkg --print-architecture)] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list'
+RUN  apt update &&  apt install -y \
   build-essential \
   cmake \
   git \
@@ -61,21 +61,21 @@ RUN python3 -m pip install -U \
   pytest-runner \
   setuptools
 # install Fast-RTPS dependencies
-RUN sudo apt install --no-install-recommends -y \
+RUN  apt install --no-install-recommends -y \
   libasio-dev \
   libtinyxml2-dev
 # install Cyclone DDS dependencies
-RUN sudo apt install --no-install-recommends -y \
+RUN  apt install --no-install-recommends -y \
   libcunit1-dev
 
 RUN mkdir -p /opt/ros/galactic/src
 RUN cd /opt/ros/galactic
 RUN wget https://raw.githubusercontent.com/ros2/ros2/galactic/ros2.repos
 RUN vcs import src < ros2.repos
-RUN sudo rosdep init
+RUN  rosdep init
 RUN rosdep update
 RUN rosdep install --from-paths src --ignore-src --rosdistro galactic -y --skip-keys "console_bridge fastcdr fastrtps libopensplice67 libopensplice69 rti-connext-dds-5.3.1 urdfdom_headers"
-RUN sudo rosdep init
+RUN  rosdep init
 RUN rosdep update
 RUN rosdep install --from-paths src --ignore-src --rosdistro galactic -y --skip-keys "console_bridge fastcdr fastrtps libopensplice67 libopensplice69 rti-connext-dds-5.3.1 urdfdom_headers"
 RUN cd /opt/ros/galactic/
