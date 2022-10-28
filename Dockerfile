@@ -16,17 +16,17 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install language
 RUN apt-get update && apt-get install -y \
   locales \
-  curl \
-  gnupg2 \
-  lsb-release \
-  build-essential \
-  cmake \
-  git \
-  python3-colcon-common-extensions \
-  python3-pip \
-  python-rosdep \
-  python3-vcstool \
-  wget \
+  RUN apt-get update && apt-get install -y curl 
+  RUN apt-get update && apt-get install -y gnupg2 
+  RUN apt-get update && apt-get install -y lsb-release 
+  RUN apt-get update && apt-get install -y build-essential 
+  RUN apt-get update && apt-get install -y cmake 
+  RUN apt-get update && apt-get install -y git 
+  RUN apt-get update && apt-get install -y python3-colcon-common-extensions 
+  RUN apt-get update && apt-get install -y python3-pip 
+  RUN apt-get update && apt-get install -y python-rosdep
+  RUN apt-get update && apt-get install -y python3-vcstool 
+  RUN apt-get update && apt-get install -y wget \
   && locale-gen en_US.UTF-8 \
   && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
   && rm -rf /var/lib/apt/lists/*
